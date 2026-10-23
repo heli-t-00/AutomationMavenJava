@@ -15,8 +15,9 @@ public class firsttest {
     private final By usernameField = By.id("user-name");
     private final By passwordField = By.id("password");
     private final By loginButton = By.id("login-button");
+    private final By loginErrorMsg = By.cssSelector(".error-message-container >h3");
 
-
+    //Methods
     public void enterUsername(String usernameText) {
         WebElement username = driver.findElement(usernameField);
         username.sendKeys(usernameText);
@@ -27,15 +28,24 @@ public class firsttest {
         password.sendKeys("secret_sauce");
     }
 
-//    public void enterPassword() {
-//        WebElement password = driver.findElement(passwordField);
-//        password.sendKeys(passwordText);
-//    }
+    public void enterPassword(String passwordText) {
+        WebElement password = driver.findElement(passwordField);
+        password.sendKeys(passwordText);
+    }
 
     public void clickLogin() {
         WebElement login = driver.findElement(loginButton);
         login.click();
     }
+
+    public void completeLogin(String username, String password) {
+        enterUsername(username);
+        enterPassword(password);
+        clickLogin();
+    }
+
+
+// ALL TEST
 
     @BeforeClass
     public static void setUp() {
@@ -47,20 +57,20 @@ public class firsttest {
 
     }
 
-    @Test
-    public void testRun() throws InterruptedException {
-
-        enterUsername("standard_user");
-        enterPassword();
-        clickLogin();
-        Thread.sleep(5000);
-        System.out.println("test1");
-
-        String expectedUrl = "https://www.saucedemo.com/inventory.html";
-        String expectedTitle = "Swag Labs";
-        Assert.assertEquals(expectedUrl, driver.getCurrentUrl(expectedUrl));
-        Assert.assertEquals(expectedTitle, driver.getTitle());
-    }
+//    @Test
+//    public void testRun() throws InterruptedException {
+//
+//        enterUsername("standard_user");
+//        enterPassword();
+//        clickLogin();
+//        Thread.sleep(5000);
+//        System.out.println("test1");
+//
+//        String expectedUrl = "https://www.saucedemo.com/inventory.html";
+//        String expectedTitle = "Swag Labs";
+//        Assert.assertEquals(expectedUrl, driver.getCurrentUrl(expectedUrl));
+//        Assert.assertEquals(expectedTitle, driver.getTitle());
+//    }
 
     @Test
     public void testRun2() throws InterruptedException {
@@ -75,17 +85,27 @@ public class firsttest {
 
 
     @Test // no username/password, assertion for results
-    public void testRun3() throws InterruptedException {
-        enterUsername("");
-        enterPassword();
-        clickLogin();
+    public void noUsernamePasswordTest() throws InterruptedException {
+        completeLogin("", "");
         Thread.sleep(5000);
-        WebElement error = driver.findElement(By.cssSelector("#login_button_container > div > form > div.error-message-container.error > h3"));
-        error.getText();
-        Assert.assertEquals("Epic sadface: Username is required", error.getText());
-
+        WebElement loginError = driver.findElement(loginErrorMsg);
+        Assert.assertEquals("Epic sadface: Username is required", loginError.getText());
+        System.out.println("TEST" + loginError.getText());
 
     }
+
+    @Test
+    public void noPasswordTest() throws InterruptedException {
+        enterUsername("standard_user");
+        enterPassword("");
+        clickLogin();
+        Thread.sleep(5000);
+        WebElement loginError = driver.findElement(loginErrorMsg);
+        Assert.assertEquals("Epic sadface: Password is required", loginError.getText());
+        System.out.println("TEST " + loginError.getText());
+
+    }
+
 
     @AfterClass
     public static void tearDown() {
