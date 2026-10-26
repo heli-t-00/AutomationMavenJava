@@ -11,18 +11,17 @@ import pages.LogicPage;
 
 public class firsttest {
 
-    static WebDriver driver;
-    private static LogicPage logicPage;
+  WebDriver driver;
+    private LogicPage logicPage;
 
 
     private final By loginErrorMsg = By.cssSelector(".error-message-container >h3");
-    private final By itemName = By.cssSelector("#inventory_item_container > div > div > div.inventory_details_desc_container > div.inventory_details_name.large_size");
-
+    private final By itemName = By.cssSelector(".inventory_item_name");
 
 // ALL TEST
 
-    @BeforeClass
-    public static void setUp() {
+    @Before
+    public void setUp() {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
@@ -82,14 +81,14 @@ public class firsttest {
         Thread.sleep(2000);
         logicPage.selectProduct();
         logicPage.checkBasket();
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         WebElement actual = driver.findElement(itemName);
         Assert.assertEquals("Sauce Labs Bike Light", actual.getText());
 
     }
 
-    @AfterClass
-    public static void tearDown() {
+    @After
+    public void tearDown() {
         driver.quit();
     }
 
