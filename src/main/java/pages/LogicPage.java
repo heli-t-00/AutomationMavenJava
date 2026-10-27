@@ -14,11 +14,17 @@ public class LogicPage extends BasePage {
     private final By passwordField = By.id("password");
     private final By loginButton = By.id("login-button");
 
-
+    // Items
     private final By addBikeLightBtn = By.id("add-to-cart-sauce-labs-bike-light");
-    private final By cartBtn = By.id("shopping_cart_container");
-    private final By addToCartBtn = By.cssSelector("#add-to-cart-sauce-labs-backpack, " + "#add-to-cart-sauce-labs-bike-light," + "#add-to-cart-sauce-labs-bolt-t-shirt, " + "#add-to-cart-sauce-labs-fleece-jacket," +"#add-to-cart-sauce-labs-onesie, "+ "#add-to-cart-test.allthethings()-t-shirt-(red)");
+    private final By addBackpackBtn = By.id("add-to-cart-sauce-labs-backpack");
+    private final By addTshirtBtn = By.id("add-to-cart-sauce-labs-bolt-t-shirt");
+    private final By addFleeceBtn = By.id("add-to-cart-sauce-labs-fleece-jacket");
+    private final By addOnsieBtn = By.id("add-to-cart-sauce-labs-onesie");
+    private final By addRedTshirtBtn = By.id("dd-to-cart-test.allthethings()-t-shirt-(red)");
 
+
+    private final By cartBtn = By.id("shopping_cart_container");
+    private final By getCartBtnAmount = By.className("shopping_cart_badge");
 
     //Methods
     public void enterUsername(String usernameText) {
@@ -47,19 +53,54 @@ public class LogicPage extends BasePage {
         clickLogin();
     }
 
-    public void selectProduct(){
+    public void selectProduct() {
         click(addBikeLightBtn);
 
     }
 
-    public void checkBasket(){
+    public void checkBasket() {
         click(cartBtn);
     }
 
-    public void addToCart(){
-        click(addToCartBtn);
+    public void addBikeLight() {
+        click(addBikeLightBtn);
 
     }
+
+    public void addBackpack() {
+        click(addBackpackBtn);
+    }
+
+    public void addTshirt() {
+        click(addTshirtBtn);
+    }
+
+    public void addFleece() {
+        click(addFleeceBtn);
+
+    }
+
+    public void addOnsie() {
+        click(addOnsieBtn);
+    }
+
+    public void addRedTshirt() {
+        click(addRedTshirtBtn);
+    }
+
+    public String getCartBtnText() {
+        return driver.findElement(cartBtn).getText();
+
+
+    }
+
+ public void addProduct(String productName){
+        addOnsieBtn;
+                addFleeceBtn;
+                addBikeLightBtn;
+                addBackpackBtn;
+
+ }
 
 
 }

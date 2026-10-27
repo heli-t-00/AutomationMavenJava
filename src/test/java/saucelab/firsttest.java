@@ -11,7 +11,7 @@ import pages.LogicPage;
 
 public class firsttest {
 
-  WebDriver driver;
+    WebDriver driver;
     private LogicPage logicPage;
 
 
@@ -87,15 +87,28 @@ public class firsttest {
 
     }
 
+
     @Test
     public void selectTwoProduct() {
         logicPage.completeLogin("standard_user", "secret_sauce");
-        logicPage.addToCart();
-        loginPage.addToCart():
+        logicPage.addBikeLight();
+        logicPage.addOnsie();
         logicPage.checkBasket();
-       
+        Assert.assertEquals("3", logicPage.getCartBtnText());
+
+    }
 
 
+    @Test
+    public void selectProduct)
+
+    {
+        logicPage.completeLogin("standard_user", "secret_sauce");
+        logicPage.addProduct();
+        logicPage.checkBasket();
+
+
+        Assert.assertEquals("3", logicPage.getCartBtnText());
 
     }
 
