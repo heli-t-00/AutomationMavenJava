@@ -97,20 +97,19 @@ public class firsttest {
         Assert.assertEquals("3", logicPage.getCartBtnText());
 
     }
+@Test
+public void selectProduct(){
+    logicPage.completeLogin("standard_user", "secret_sauce");
+    logicPage.addProduct("Bike Light");
+    logicPage.addProduct("Tshirt");
+    logicPage.addProduct("Backpack");
+    logicPage.checkBasket();
+
+    Assert.assertEquals("3", logicPage.getCartBtnText());
 
 
-    @Test
-    public void selectProduct)
+}
 
-    {
-        logicPage.completeLogin("standard_user", "secret_sauce");
-        logicPage.addProduct();
-        logicPage.checkBasket();
-
-
-        Assert.assertEquals("3", logicPage.getCartBtnText());
-
-    }
 
 
     @After

@@ -20,7 +20,7 @@ public class LogicPage extends BasePage {
     private final By addTshirtBtn = By.id("add-to-cart-sauce-labs-bolt-t-shirt");
     private final By addFleeceBtn = By.id("add-to-cart-sauce-labs-fleece-jacket");
     private final By addOnsieBtn = By.id("add-to-cart-sauce-labs-onesie");
-    private final By addRedTshirtBtn = By.id("dd-to-cart-test.allthethings()-t-shirt-(red)");
+    private final By addRedTshirtBtn = By.id("add-to-cart-test.allthethings()-t-shirt-(red)");
 
 
     private final By cartBtn = By.id("shopping_cart_container");
@@ -90,17 +90,24 @@ public class LogicPage extends BasePage {
 
     public String getCartBtnText() {
         return driver.findElement(cartBtn).getText();
-
-
     }
 
- public void addProduct(String productName){
-        addOnsieBtn;
-                addFleeceBtn;
-                addBikeLightBtn;
-                addBackpackBtn;
+    public void addProduct(String productName) {
+        if (productName.equals("Bike Light")) {
+            click(addBikeLightBtn);
+        } else if (productName.equals("Onsie")) {
+            click(addOnsieBtn);
 
- }
+        } else if (productName.equals("Fleece")) {
+            click(addFleeceBtn);
+
+        } else if (productName.equals("Tshirt")) {
+            click(addTshirtBtn);
+        } else if (productName.equals("Backpack")) {
+            click(addBackpackBtn);
+       }
+
+    }
 
 
 }
