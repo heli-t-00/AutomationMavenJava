@@ -17,6 +17,7 @@ public class LogicPage extends BasePage {
 
     private final By addBikeLightBtn = By.id("add-to-cart-sauce-labs-bike-light");
     private final By cartBtn = By.id("shopping_cart_container");
+    private final By addToCartBtn = By.cssSelector("#add-to-cart-sauce-labs-backpack, " + "#add-to-cart-sauce-labs-bike-light," + "#add-to-cart-sauce-labs-bolt-t-shirt, " + "#add-to-cart-sauce-labs-fleece-jacket," +"#add-to-cart-sauce-labs-onesie, "+ "#add-to-cart-test.allthethings()-t-shirt-(red)");
 
 
     //Methods
@@ -55,6 +56,10 @@ public class LogicPage extends BasePage {
         click(cartBtn);
     }
 
+    public void addToCart(){
+        click(addToCartBtn);
+
+    }
 
 
 }

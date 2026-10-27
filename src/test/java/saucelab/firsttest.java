@@ -87,6 +87,19 @@ public class firsttest {
 
     }
 
+    @Test
+    public void selectTwoProduct() {
+        logicPage.completeLogin("standard_user", "secret_sauce");
+        logicPage.addToCart();
+        loginPage.addToCart():
+        logicPage.checkBasket();
+       
+
+
+
+    }
+
+
     @After
     public void tearDown() {
         driver.quit();
