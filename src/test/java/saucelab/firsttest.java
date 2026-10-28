@@ -38,10 +38,8 @@ public class firsttest {
     public void successLoginTest() throws InterruptedException {
 
         logicPage.completeLogin("standard_user", "secret_sauce");
-        String expectedUrl = "https://www.saucedemo.com/inventory.html";
-        logicPage.waitForUrl(expectedUrl);
-
-        Assert.assertEquals(expectedUrl, driver.getCurrentUrl());
+        logicPage.waitForUrl(LogicPage.successUrl);
+        Assert.assertEquals(LogicPage.successUrl, driver.getCurrentUrl());
 
     }
 
@@ -53,8 +51,6 @@ public class firsttest {
         logicPage.enterUsername("locked_out_user");
         logicPage.enterPassword();
         logicPage.clickLogin();
-        Thread.sleep(5000);
-        System.out.println("test2");
         WebElement element = driver.findElement(By.cssSelector(".error-message-container h3"));
     }
 
@@ -62,7 +58,6 @@ public class firsttest {
     @Test // no username/password, assertion for results
     public void noUsernamePasswordTest() throws InterruptedException {
         logicPage.completeLogin("", "");
-        Thread.sleep(5000);
         WebElement loginError = driver.findElement(loginErrorMsg);
         Assert.assertEquals("Epic sadface: Username is required", loginError.getText());
         System.out.println("TEST" + loginError.getText());
@@ -74,7 +69,6 @@ public class firsttest {
         logicPage.enterUsername("standard_user");
         logicPage.enterPassword("");
         logicPage.clickLogin();
-        Thread.sleep(5000);
         WebElement loginError = driver.findElement(loginErrorMsg);
         Assert.assertEquals("Epic sadface: Password is required", loginError.getText());
         System.out.println("TEST " + loginError.getText());
@@ -84,10 +78,10 @@ public class firsttest {
     @Test
     public void selectOneProduct() throws InterruptedException {
         logicPage.completeLogin("standard_user", "secret_sauce");
-        Thread.sleep(2000);
+        logicPage.waitForUrl(logicPage.successUrl);
         logicPage.selectProduct();
         logicPage.checkBasket();
-        Thread.sleep(5000);
+
         WebElement actual = driver.findElement(itemName);
         Assert.assertEquals("Sauce Labs Bike Light", actual.getText());
 

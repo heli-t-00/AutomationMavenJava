@@ -5,9 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LogicPage extends BasePage {
+
+    public static final String successUrl = "https://www.saucedemo.com/inventory.html";
+
     public LogicPage(WebDriver driver) {
         super(driver);
     }
+
 
     //locators
     private final By usernameField = By.id("user-name");
@@ -130,7 +134,7 @@ public class LogicPage extends BasePage {
 
     }
 
-    public void selectProduct(String productName){
+    public void selectProduct(String productName) {
         click(getProductText(productName));
 
 
@@ -140,6 +144,7 @@ public class LogicPage extends BasePage {
         driver.findElement(getProductText(productName)).getText();
 
     }
+
 
 }
 
