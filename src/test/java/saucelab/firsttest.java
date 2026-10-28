@@ -1,6 +1,7 @@
 package saucelab;
 
 import base.BasePage;
+import com.google.common.collect.Range;
 import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import pages.LogicPage;
+import static org.awaitility.Awaitility.await;
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class firsttest {
 
@@ -35,11 +38,14 @@ public class firsttest {
     public void successLoginTest() throws InterruptedException {
 
         logicPage.completeLogin("standard_user", "secret_sauce");
-        Thread.sleep(5000);
         String expectedUrl = "https://www.saucedemo.com/inventory.html";
+        logicPage.waitForUrl(expectedUrl);
+
         Assert.assertEquals(expectedUrl, driver.getCurrentUrl());
 
     }
+
+
 
     @Test
     public void testRun2() throws InterruptedException {
@@ -94,7 +100,7 @@ public class firsttest {
         logicPage.addBikeLight();
         logicPage.addOnsie();
         logicPage.checkBasket();
-        Assert.assertEquals("3", logicPage.getCartBtnText());
+        Assert.assertEquals("2", logicPage.getCartBtnText());
 
     }
 

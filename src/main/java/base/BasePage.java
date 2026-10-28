@@ -3,8 +3,12 @@ package base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import static org.awaitility.Awaitility.await;
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 import java.util.List;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class BasePage {
     protected WebDriver driver;
@@ -29,5 +33,13 @@ public class BasePage {
         find(locator).clear();
         find(locator).sendKeys(text);
     }
+
+private static final int DEFAULT_TIMEOUT = 5;
+
+    public void waitForUrl(String expectedUrl){
+        await().atMost(DEFAULT_TIMEOUT, SECONDS).until(() -> driver.getCurrentUrl().equals(expectedUrl));
+
+    }
+
 
 }
