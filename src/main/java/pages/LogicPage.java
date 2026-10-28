@@ -97,17 +97,49 @@ public class LogicPage extends BasePage {
             click(addBikeLightBtn);
         } else if (productName.equals("Onsie")) {
             click(addOnsieBtn);
-
         } else if (productName.equals("Fleece")) {
             click(addFleeceBtn);
-
         } else if (productName.equals("Tshirt")) {
             click(addTshirtBtn);
         } else if (productName.equals("Backpack")) {
             click(addBackpackBtn);
-       }
+        } else {
+            System.out.println("this is not a valid product");
+        }
+    }
+
+    //SWITCH Statement
+
+    public By getProductText(String productName) {
+        switch (productName) {
+            case "Bike Light":
+                return addBikeLightBtn;
+            case "Onsie":
+                return addOnsieBtn;
+
+            case "Fleece":
+                return addFleeceBtn;
+
+            case "Backpack":
+                return addBackpackBtn;
+
+            default:
+                return addTshirtBtn;
+        }
+
 
     }
 
+    public void selectProduct(String productName){
+        click(getProductText(productName));
+
+
+    }
+
+    public void getPtext(String productName) {
+        driver.findElement(getProductText(productName)).getText();
+
+    }
 
 }
+
