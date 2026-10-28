@@ -18,7 +18,7 @@ public class BasePage {
     }
 
     protected WebElement find(By locator) {
-        await().atMost(DEFAULT_TIMEOUT, SECONDS).ignoreExceptions().until(() ->driver.findElement(locator).isDisplayed());
+        await().atMost(DEFAULT_TIMEOUT, SECONDS).ignoreExceptions().until(() -> driver.findElement(locator).isDisplayed());
         return driver.findElement(locator);
     }
 
